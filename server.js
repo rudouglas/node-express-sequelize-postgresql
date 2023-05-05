@@ -1,8 +1,11 @@
+const newrelic = require("newrelic");
 const express = require("express");
-// const bodyParser = require("body-parser"); /* deprecated */
 const cors = require("cors");
 
+const path = __dirname + '/app/views/';
 const app = express();
+
+app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -25,7 +28,22 @@ db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  newrelic.recordLogEvent({
+    message: "cannot find file",
+    level: "ERROR",
+    error: new Error("missing.txt"),
+  });
+  newrelic.recordLogEvent({
+    message: "cannot find file",
+    level: "INFO",
+    error: new Error("missing.txt"),
+  });
+  newrelic.recordLogEvent({
+    message: "cannot find file",
+    level: "WARNING",
+    error: new Error("missing.txt"),
+  });
+  return res.sendFile(path + "index.html");
 });
 
 require("./app/routes/turorial.routes")(app);
