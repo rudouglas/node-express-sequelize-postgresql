@@ -2,10 +2,15 @@ const newrelic = require("newrelic");
 const express = require("express");
 const cors = require("cors");
 
-const path = __dirname + '/app/views/';
+// const path = __dirname + '/app/views/';
 const app = express();
 
-app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+// app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
 
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
@@ -37,13 +42,13 @@ app.get("/", (req, res) => {
     level: "WARNING",
     error: new Error("missing.txt"),
   });
-  return res.sendFile(path + "index.html");
+  return res.json({ message: "Welcome to bezkoder application." });
 });
 
 require("./app/routes/turorial.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
