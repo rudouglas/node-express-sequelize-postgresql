@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8080"
 };
 
 app.use(cors(corsOptions));
