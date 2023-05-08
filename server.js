@@ -7,12 +7,6 @@ const app = express();
 
 app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
 
-var corsOptions = {
-  origin: "http://localhost:8080"
-};
-
-app.use(cors(corsOptions));
-
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
 
@@ -49,7 +43,7 @@ app.get("/", (req, res) => {
 require("./app/routes/turorial.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
