@@ -2,12 +2,14 @@ const newrelic = require("newrelic");
 const express = require("express");
 const cors = require("cors");
 
-// const path = __dirname + '/app/views/';
+const path = __dirname + '/app/views/';
 const app = express();
 
-// var corsOptions = {
-//   origin: "http://localhost:8081"
-// };
+app.use(express.static(path));
+
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
 
 app.use(cors());
 // app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
@@ -42,7 +44,7 @@ app.get("/", (req, res) => {
     level: "WARNING",
     error: new Error("missing.txt"),
   });
-  return res.json({ message: "Welcome to bezkoder application." });
+  res.sendFile(path + "index.html")
 });
 
 require("./app/routes/turorial.routes")(app);
