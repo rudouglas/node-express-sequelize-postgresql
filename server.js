@@ -5,11 +5,11 @@ const cors = require("cors");
 // const path = __dirname + '/app/views/';
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+// var corsOptions = {
+//   origin: "http://localhost:8081"
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 // app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
 
 // parse requests of content-type - application/json
