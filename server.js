@@ -8,10 +8,10 @@ const app = express();
 app.use(express.static(path));
 
 var corsOptions = {
-  origin: "http://0.0.0.0:8081"
+  origin: "https://0.0.0.0:8081"
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 // app.use(express.static(path));// const bodyParser = require("body-parser"); /* deprecated */
 
 // parse requests of content-type - application/json
